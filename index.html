@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>画板</title>
    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    <canvas  id="canvas"></canvas>
+    <canvas  id="canvas" width="100" height="100"></canvas>
+
     <script>
         let canvas = document.getElementById("canvas");
         canvas.width = document.documentElement.clientWidth
         canvas.height = document.documentElement.clientHeight
         let ctx = canvas.getContext("2d");
+
         ctx.fillStyle= "black";
-        ctx.strokeStyle = 'black'
+        ctx.strokeStyle = 'none'
         ctx.lineWidth = 8;
         ctx.lineCap = "round";
 
         let painting = false
         let last
 
-        var isTouchDevice = 'ontouchstart' in document.documentElement;
+        let isTouchDevice = 'ontouchstart' in document.documentElement;
         if(isTouchDevice) {
             canvas.ontouchstart = (e) => {
                 let x= e.touches[0].clientX
@@ -36,7 +39,6 @@
             last = [x ,y]
             }
         }else{
-
             canvas.onmousedown = (e) => {
             painting = true
             last = [e.clientX, e.clientY]
@@ -62,10 +64,6 @@
            ctx.stroke();
 }
 
-
-       
-
     </script>
-   
 </body>
 </html>
